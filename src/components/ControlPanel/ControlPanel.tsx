@@ -24,7 +24,6 @@ class ControlPanel extends React.Component<controlPanelProps, controlPanelState>
   };
 
   submitBtnClick = () => {
-    //const { textBoxValue } = this.state;
     const textBoxValue = [
       { coords: { lat: 59.0058887, lng: 56.2708801 }, text: 'Text1' },
       { coords: { lat: 58.0058887, lng: 56.2708801 }, text: 'Text2' },
@@ -32,7 +31,21 @@ class ControlPanel extends React.Component<controlPanelProps, controlPanelState>
       { coords: { lat: 56.0058887, lng: 56.2708801 }, text: 'Text4' },
     ];
     const { cbFromParent } = this.props;
+
+    // const { textBoxValue } = this.state;
+    // fetch(textBoxValue)
+    //   .then((res: Response) => {
+    //     if (res && cbFromParent) {
+    //       cbFromParent(textBoxValue);
+    //     }
+    //   });
     if (cbFromParent) cbFromParent(textBoxValue);
+  };
+
+  clearBtnClick = () => {
+    this.setState({ textBoxValue: '' });
+    const { cbFromParent } = this.props;
+    if (cbFromParent) cbFromParent([]);
   };
 
   render() {
@@ -43,6 +56,9 @@ class ControlPanel extends React.Component<controlPanelProps, controlPanelState>
         />
         <button type="button" onClick={this.submitBtnClick} className="controlPanel__tb">
           Submit
+        </button>
+        <button type="button" onClick={this.clearBtnClick} className="controlPanel__tb">
+          Clear all
         </button>
       </div>
     );
