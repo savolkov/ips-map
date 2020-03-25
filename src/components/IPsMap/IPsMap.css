@@ -1,0 +1,11 @@
+.leaflet-container {
+    height: 400px;
+    width: 800px;
+}
+
+.IPsMap {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+

@@ -1,0 +1,8 @@
+.controlPanel {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 0px 8px 0px;
+}
+.controlPanel__btn {
+    margin: 2px;
+}
