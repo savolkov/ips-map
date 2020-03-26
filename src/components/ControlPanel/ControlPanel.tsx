@@ -1,6 +1,6 @@
-import React from 'react';
-import './ControlPanel.css';
-import Textbox from '../Textbox/Textbox';
+import React from "react";
+import "./ControlPanel.css";
+import Textbox from "../Textbox/Textbox";
 
 type controlPanelState = {
   textBoxValue: string;
@@ -19,13 +19,13 @@ class ControlPanel extends React.Component<
 
   constructor(props: any) {
     super(props);
-    this.state = { textBoxValue: '' };
-    this.alertMessage = '';
+    this.state = { textBoxValue: "" };
+    this.alertMessage = "";
   }
 
   getChildValue = (value: any) => {
     this.setState({
-      textBoxValue: value,
+      textBoxValue: value
     });
   };
 
@@ -37,22 +37,21 @@ class ControlPanel extends React.Component<
 
     if (cbFromParent) cbFromParent([]);
 
-    fetch(
-      `https://whispering-sea-82070.herokuapp.com?url=${textBoxValue}`,
-    )
-      .then((response) => response.text())
-      .then((txt) => {
+    fetch(`https://whispering-sea-82070.herokuapp.com?url=${textBoxValue}`)
+      .then(response => response.text())
+      .then(txt => {
         console.log(txt);
         const obj = JSON.parse(txt);
         if (obj && cbFromParent) {
-          this.alertMessage = '';
+          this.alertMessage = "";
           const places = obj.places ? obj.places : [];
           cbFromParent(places);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        this.alertMessage = 'Error handling request. Try once again or try another page.';
+        this.alertMessage =
+          "Error handling request. Try once again or try another page.";
       });
     //   .then(async (res: Response) => {
     //   if (res && res.body && cbFromParent) {
@@ -77,20 +76,22 @@ class ControlPanel extends React.Component<
     return (
       <div className="controlPanel">
         <Textbox cbFromParent={this.getChildValue} />
-        <button
-          type="button"
-          onClick={this.submitBtnClick}
-          className="controlPanel__tb"
-        >
-          Submit
-        </button>
-        <button
-          type="button"
-          onClick={this.clearBtnClick}
-          className="controlPanel__tb"
-        >
-          Clear all
-        </button>
+        <div className="controlPanel__buttons">
+          <button
+            type="button"
+            onClick={this.submitBtnClick}
+            className="controlPanel__tb waves-effect waves-light btn"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={this.clearBtnClick}
+            className="controlPanel__tb waves-effect waves-light btn red"
+          >
+            Clear all
+          </button>
+        </div>
         <div>
           <p>{this.alertMessage}</p>
         </div>

@@ -1,8 +1,12 @@
 .controlPanel {
-    display: flex;
-    flex-direction: row;
-    padding: 8px 0px 8px 0px;
+    width: 400px;
 }
-.controlPanel__btn {
+
+.controlPanel__buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.controlPanel__buttons * {
     margin: 2px;
 }
