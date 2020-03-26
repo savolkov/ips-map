@@ -24,22 +24,24 @@ class ControlPanel extends React.Component<controlPanelProps, controlPanelState>
   };
 
   submitBtnClick = () => {
-    const textBoxValue = [
-      { coords: { lat: 59.0058887, lng: 56.2708801 }, text: 'Text1' },
-      { coords: { lat: 58.0058887, lng: 56.2708801 }, text: 'Text2' },
-      { coords: { lat: 57.0058887, lng: 56.2708801 }, text: 'Text3' },
-      { coords: { lat: 56.0058887, lng: 56.2708801 }, text: 'Text4' },
-    ];
+    // const textBoxValue = [
+    //   { coords: { lat: 59.0058887, lng: 56.2708801 }, text: 'Text1' },
+    //   { coords: { lat: 58.0058887, lng: 56.2708801 }, text: 'Text2' },
+    //   { coords: { lat: 57.0058887, lng: 56.2708801 }, text: 'Text3' },
+    //   { coords: { lat: 56.0058887, lng: 56.2708801 }, text: 'Text4' },
+    // ];
     const { cbFromParent } = this.props;
 
-    // const { textBoxValue } = this.state;
-    // fetch(textBoxValue)
-    //   .then((res: Response) => {
-    //     if (res && cbFromParent) {
-    //       cbFromParent(textBoxValue);
-    //     }
-    //   });
-    if (cbFromParent) cbFromParent(textBoxValue);
+    const { textBoxValue } = this.state;
+    console.log(textBoxValue);
+    fetch('https://whispering-sea-82070.herokuapp.com/')
+      .then(async (res: Response) => {
+        if (res && res.body && cbFromParent) {
+          const objResponse = await res.json();
+          const places = objResponse.places ? objResponse.places : [];
+          cbFromParent(places);
+        }
+      });
   };
 
   clearBtnClick = () => {
