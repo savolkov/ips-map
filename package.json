@@ -12,6 +12,7 @@
     "@types/react": "16.9.0",
     "@types/react-dom": "16.9.0",
     "leaflet": "^1.6.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.14.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-leaflet": "2.6.3",
